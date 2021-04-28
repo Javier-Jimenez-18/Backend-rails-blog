@@ -1,10 +1,18 @@
 class PagesController < ApplicationController
+  # before_action method, at the top of controller class and outside any instance methods:
+  # the controller will call set_page method before running any action method
+  # before_action :set_page, except: [:index, :new, :create]
+  before_action :set_page, only: [:show, :edit, :update, :destroy]
+
   def index
     @pages = Page.all
   end
 
   def show
-    @page = Page.find(params[:id])
+    # look up page using the id parameter of Page Object and
+    # assign it to page instance variable
+    # set_page
+
     # render text: params[:id]
     # render text: @page.title  (Rails can only render one thing per controller)
   end
@@ -29,11 +37,15 @@ class PagesController < ApplicationController
   end
 
   def edit
-    @page = Page.find(params[:id])
+    # look up page using the id parameter of Page Object and
+    # assign it to page instance variable
+    # set_page
   end
 
   def update
-    @page = Page.find(params[:id])
+    # look up page using the id parameter of Page Object and
+    # assign it to page instance variable
+    # set_page
 
     # require only the page parameter, permit only the three page parameters
     # page_params = params.require(:page).permit(:title, :body, :slug)
@@ -44,9 +56,25 @@ class PagesController < ApplicationController
     redirect_to @page
   end
 
+  def destroy
+    # look up page to destroy using the id parameter of Page Object and
+    # assign it to page instance variable
+    # set_page
+    # call detroy method to delete record from database
+    @page.destroy
+    # tell browser to load the view for the pages
+    redirect_to pages_path
+  end
+
   private
     # require only the page parameter, permit only the three page parameters
     def page_params
       params.require(:page).permit(:title, :body, :slug)
+    end
+
+    # look up page using the id parameter of Page Object and
+    # assign it to page instance variable
+    def set_page
+      @page = Page.find(params[:id])
     end
 end
