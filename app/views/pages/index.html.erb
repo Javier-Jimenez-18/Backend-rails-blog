@@ -1,0 +1,34 @@
+<h1>Blog Pages</h1>
+
+<% #= @pages.first.title %>
+
+<% # will display You Passed! %>
+<% #grade = 97 %>
+<% #if grade > 60 %>
+<% #   You Passed! %>
+<% #end %>
+
+<% # will NOT display You Failed! %>
+<% #grade2 = 61 %>
+<% #if grade2 < 60 %>
+<% #   You Failed! %>
+<% #end %>
+
+<% #4.times do |index| %>
+<% #  <p> %>
+<% #    <%= index fish %>
+<% #  </p> %>
+<% #end %>
+
+<% @pages.each do |page| %>
+  <p>
+  <% #  <%= page.title (displays only the titles) %>
+  <% # use link_to method to return a string with HTML link %>
+  <% #= link_to("link text", "/link/path") %>
+  <% #= link_to(page.title, "/pages/#{page.id}") %>
+  <% #= link_to(page.title, page_path(page)) %>
+  <%= link_to(page.title, page) %>
+  </p>
+<% end %>
+
+<%= link_to('New Page', new_page_path) %>
