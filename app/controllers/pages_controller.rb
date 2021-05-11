@@ -60,6 +60,7 @@ class PagesController < ApplicationController
     # look up page to destroy using the id parameter of Page Object and
     # assign it to page instance variable
     # set_page
+    
     # call detroy method to delete record from database
     @page.destroy
     # tell browser to load the view for the pages
